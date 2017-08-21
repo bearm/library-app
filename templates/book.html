@@ -1,0 +1,27 @@
+<div class="bookItem" ng-class="{'editing-item': editing, 'edited': book.edited, 'saved':book.saved}">
+    <div class="bookImage" style="background-image('assets/images/{{ book.title }}.jpg')"></div>
+    <div class="bookContent">
+        <div class="bookName"> {{ book.title }} </div>
+        <input type="text" class="editing-label" required ng-minlength=5 ng-maxlength=25 ng-trim="boolean"
+               ng-change="" ng-show="editing" ng-model="book.title"/>
+        <div class="bookSubtitle"> {{ book.author }} </div>
+        <input type="text" class="editing-label" required ng-minlength=5 ng-maxlength=25 ng-trim="boolean"
+               ng-change="" ng-show="editing" ng-model="book.author"/>
+        <div class="bookDate"> Publication date: {{ book.metadata | limitTo : 1 : 11}} </div>
+        <input type="text" class="editing-label" required ng-minlength=5 ng-maxlength=25 ng-trim="boolean"
+               ng-change="" ng-show="editing" ng-model="book.metadata"/>
+        <!--<div class="bookISBIN"> {{ book.metadata | limitTo : -15  }} </div>
+        <input ng-change="book.edited = true"
+               ng-blur="editing = false;"
+               ng-show="editing"
+               ng-model="book.name"
+               class="editing-label"
+               type="text"/>-->
+    </div>
+    <div class="bookActions">
+        <div class="edit" ng-hide="editing" ng-click="editing = !editing">Edit</div>
+        <div class="save" ng-show="editing" ng-click="book.edited = true; saveBooks(book)">Save</div>
+        <div class="delete" ng-click="deleteBook(book, $index)">Delete</div>
+    </div>
+    <div class="bookTheme" ng-class="book.metadata | limitTo: 12 : 20"> Tematica {{ book.author }} </div>
+</div>
