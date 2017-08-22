@@ -16,7 +16,7 @@ gulp.task('default', ['watch']);
 });*/
 
 gulp.task('build-css', function() {
-    return gulp.src('assets/sass/**/*.scss')
+    return gulp.src('assets/scss/**/*.scss')
         .pipe(sass({
             outputStyle: 'compressed'
         }))
@@ -47,5 +47,5 @@ gulp.task('build', ['build-css', 'build-vendor-js', 'build-js']);
 
 gulp.task('watch', function() {
     gulp.watch('scripts/**/*.js', ['build-js']);
-    gulp.watch('assets/sass/**/*.scss', ['build-css']);
+    gulp.watch('assets/scss/**/*.scss', ['build-css']);
 });

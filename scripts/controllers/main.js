@@ -2,20 +2,32 @@
 
 angular.module('libraryApp')
     .controller('mainCtrl', function ($scope, dataService) {
+        $scope.books = [];
 
-        dataService.getBooks(function (response) {
-            $scope.books = response.data.books;
-        });
-
-        $scope.saveBooks = function () {
-            var filteredBooks = $scope.books.filter(function(book){
-                if (book.edited){
-                    return book;
-                }
+        dataService.getBooks()
+            .then(function (response) {
+                $scope.books = response.books;
+                console.log($scope.books);
+            })
+            .catch(function (err) {
+                console.log(err);
+                // TODO 404
             });
-            dataService.saveBooks(filteredBooks);
-        };
 
+        $scope.saveBook = function (book) {
+            console.log(book);
+            books.metadata = this.generateMetadata(book);
+            dataService.saveBook(book);
+        };
+        $scope.generateMetadata = function(selectedBook){
+            var paddingTheme = Array(12).join(' ').splice(selectedBook.length);
+            return "L" +
+                selectedBook.isbin +
+                selectedBook.theme + paddingTheme +
+                Array(20).join(' ') +
+                toTimestamp(selectedBook.date);
+
+        };
         $scope.deleteBook = function (book, index) {
             dataService.deleteBook(book);
             $scope.books.splice(index, 1)

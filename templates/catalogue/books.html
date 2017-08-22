@@ -1,0 +1,46 @@
+<div class="bookItem" ng-class="{'editing-item': editing, 'edited': book.edited, 'saved':book.saved}"
+     ng-repeat="book in books | orderBy: 'title'"
+     ng-blur="editing = false;">
+    <div class="bookImage"
+         style="background-image:url('assets/images/{{ (book.title | lowercase) | searchReplace:' ':'_' }}.jpg');"></div>
+    <div class="bookContent">
+        <div class="bookName" ng-hide="editing"> {{ book.title }}</div>
+        <input class="title editing-label" required ng-minlength=5 ng-maxlength=25 ng-trim="boolean"
+               ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.title"/>
+
+        <div class="bookSubtitle" ng-hide="editing"> {{ book.author }}</div>
+        <input class="subtitle editing-label" required ng-minlength=5 ng-maxlength=25 ng-trim="boolean"
+               ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.author"/>
+{{book.metadata | limitTo : -15}} {{book.metadata }}
+        <div class="bookDate" ng-hide="editing"> Publication date: {{ book.metadata | limitTo : -15 | date:'MM/dd/yyyy' }}</div>
+        <input type="date" class="date editing-label" ng-change="book.edited = true; book.saved = false" ng-show="editing"
+               ng-model="book.date"
+               value="{{ book.metadata | limitTo : -15 | date:'MM/dd/yyyy' }}"/>
+
+        <div class="bookISBIN"> {{ book.metadata | limitTo : 17 : 1 }} </div>
+        <input class="isbin editing-label" required ng-minlength=5 ng-maxlength=25 ng-trim="boolean"
+               ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.isbin"
+               value="{{ book.metadata | limitTo : 17 : 1 }}"/>
+
+        <div class="bookTheme">
+            <div class="icon icon_base" ng-class="book.metadata | limitTo: 20: 18 | trim | removeAccents"></div>
+            {{ book.metadata | limitTo: 20: 18 | trim | capitalize }}
+        </div>
+        <select class="theme editing-label" required
+                ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.theme"
+                >
+            <option value="terror">Terror</option>
+            <option value="aventura">Aventura</option>
+            <option value="amor">Amor</option>
+            <option value="fantasia">Fantasia</option>
+            <option value="infantil">Infantil</option>
+            <option value="novela">Novela</option>
+        </select>
+    </div>
+    <div class="bookActions">
+        <div class="edit icon_base" ng-hide="editing" ng-click="editing = !editing"></div>
+        <div class="save icon_base" ng-show="editing" ng-click="book.saved = true; saveBook(book)"></div>
+        <div class="delete icon_base" ng-click="deleteBook(book, $index)"></a>
+        </div>
+    </div>
+</div>
