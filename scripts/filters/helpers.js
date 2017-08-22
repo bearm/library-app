@@ -46,9 +46,20 @@ angular.module("libraryApp")
             return str.replace(new RegExp(search, 'g'), replace);
         }
     })
+    .filter('toDate', function () {
+        return function (unix_timestamp) {
+            return new Date(unix_timestamp*1000);
+        }
+    })
     .filter('toTimestamp', function () {
         return function (str) {
             return new Date(str).getTime()/1000;
+        }
+    })
+    .filter('getIcon', function () {
+        return function (str) {
+            var name = str.split(" ");
+            return name[0].charAt(0) + name[1].charAt(0);
         }
     })
     .filter('trim', function () {

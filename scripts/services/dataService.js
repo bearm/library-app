@@ -17,12 +17,25 @@ angular.module("libraryApp")
 
             return promise;
         };
+        this.getThemes = function(){
+            var defered = $q.defer();
+            var promise = defered.promise;
+
+            $http.get('mock/themes.json')
+                .success(function(data) {
+                    defered.resolve(data);
+                })
+                .error(function(err) {
+                    defered.reject(err)
+                });
+            return promise;
+        };
         this.deleteBook = function(book){
-            console.log("the" + book.title + " " + book.author + " " + book.metadata + " has been edited and deleted");
+            console.log("the " + book.title + " " + book.author + " " + book.metadata + " has been deleted");
             // todo add the comunication with the api to delete the item
         };
         this.saveBook = function(book){
-            console.log("the" + book.title + " " + book.author + " " + book.metadata + " has been edited and saved");
+            console.log("the " + book.title + " " + book.author + " " + book.metadata + " has been edited and saved");
             // todo add the comunication with the api to save the item
         }
     });

@@ -1,7 +1,6 @@
 @import "mixins";
 books{
     margin-top: 40px;
-
     .bookItem {
         @include display-flex();
         float: left;
@@ -23,17 +22,19 @@ books{
                 @include animation-delay(#{$i * 0.2}s);
             }
         }
-
         &:hover {
             @include transform(translate3d(0, 0, 0) translateY(0, -6px));
         }
-        &.editing {
-            @include box-shadow(0 2px 4px 0 rgba($blue, 0.12));
+        &.edited {
+            @include box-shadow(0 2px 4px 0 rgba($blue, 0.6));
         }
         &.saved {
-            @include box-shadow(0 2px 4px 0 rgba($green, 0.12));
+            @include box-shadow(0 2px 4px 0 rgba($green, 0.6));
         }
         .bookImage {
+            background-color: $white;
+            z-index: 1;
+            @include box-shadow(2px 2px 4px 0 rgba($black, 0.12));
             cursor: pointer;
             float: left;
             width: 115px;
@@ -53,15 +54,6 @@ books{
             padding: 20px;
             text-align: left;
             position: relative;
-            /*.editing-label {
-                margin-left: 5px;
-                font-family: "Varela Round";
-                border-radius: 2px;
-                border: 2px solid #a7b9c4;
-                font-size: 16px;
-                padding: 15px 0 15px 10px;
-                width: 60%;
-            }*/
             .bookName {
                 color: $gray;
                 font-size: 20px;
@@ -113,6 +105,45 @@ books{
                 }
             }
         }
+        .bookUsers{
+            text-align: left;
+            padding: 20px;
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                width: 8px;
+            }
+            &::-webkit-scrollbar-thumb {
+                padding-top:10px;
+                @include rounded(100px);
+                background-color: rgba($carto, 0.5);
+                zoom: 1;
+            }
+            &::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px transparent;
+            }
+            .user{
+                margin-bottom: 10px;
+                div{
+                    display: inline-block;
+                }
+                .icon{
+                    margin-right: 10px;
+                    padding: 9px 0px;
+                    width: 30px;
+                    text-align: center;
+                    font-size: 12px;
+                    font-weight: bold;
+                    @include rounded(100px);
+                }
+                @for $i from 1 through 15 {
+                    &:nth-child(#{$i}) {
+                        .icon {
+                            background-color: nth($colors, random(length($colors)));
+                        }
+                    }
+                }
+            }
+        }
         .bookActions {
             float: left;
             position: absolute;
@@ -127,6 +158,12 @@ books{
                 width: 20px;
                 height: 20px;
                 cursor: pointer;
+            }
+            .user {
+                background-image: icon(user, $gray);
+                &:hover{
+                    background-image: icon(user, $carto);
+                }
             }
             .edit {
                 background-image: icon(edit, $gray);
@@ -147,39 +184,59 @@ books{
                 }
             }
         }
-
-        input{
-            color: $gray;
-            font-size: 14px;
+        input, select{
+            color: $light-gray;
+            font-size: 12px;
             padding: 0 8px;
             width: 370px;
-            height: 30px;
+            height: 20px;
             margin-bottom: 10px;
             @include rounded(3px);
             background-color: $white;
             border: solid 1px $carto;
             @include transition(border-color .3s ease-in-out);
-            &.name {
-                color: $gray;
-                font-size: 20px;
-            }
-            &.subtitle {
-                color: $gray;
-                font-size: 18px;
-            }
-            &.isbin {
-                font-size: 14px;
-                color: $light-gray;
-            }
             &.theme {
-                color: $gray;
-                font-size: 14px;
+                position: absolute;
+                bottom: 20px;
+                right: 10px;
+                float: left;
+                margin-right: 10px;
+                width: 100px;
             }
             &:focus,
             &:active {
                 border-color: $blue;
             }
         }
+    }
+}
+
+.flip-container {
+    -webkit-perspective: 1000px;
+    .flipper {
+        transition: 0.6s;
+        -webkit-transform-style: preserve-3d;
+        position: relative;
+        height: 100%;
+        width: calc(100% - 110px);
+        .front, .back {
+            background: $white;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            -webkit-backface-visibility: hidden;
+        }
+        .back {
+            -webkit-transform: rotateX(180deg);
+        }
+        .front {
+            z-index: 2;
+        }
+    }
+    &.users .flipper {
+        -webkit-transform: rotateX(-180deg);
     }
 }
 

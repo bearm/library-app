@@ -17,6 +17,8 @@ $carto: #CDD2D4;
 $white: #FFFFFF;
 $black: #000000;
 
+$colors: $blue, $red, $orange, $green, $yellow, $carto;
+
 @mixin ellipsis() {
     white-space: nowrap;
     overflow: hidden;
