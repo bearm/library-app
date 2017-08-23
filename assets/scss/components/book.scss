@@ -1,0 +1,232 @@
+@import "../mixins";
+.booksList{
+    margin-top: 40px;
+    .bookItem {
+        @include display-flex();
+        float: left;
+        width: 800px;
+        height: 160px;
+        z-index: 1;
+        margin-bottom: 20px;
+        position: relative;
+        padding-right: 1px;
+        background-color: $white;
+        @include rounded(3px);
+        @include transition(all .5s ease-in-out);
+        @include box-shadow(0 2px 4px 0 rgba($black, 0.12));
+        @include opacity(0);
+        @include transition(opacity .5s cubic-bezier(.4, .85, .49, .99) .4s, transform .5s cubic-bezier(.4, .85, .49, .99) .4s);
+        @include animation(intro-to-detail .5s linear alternate forwards);
+        @for $i from 1 through 15 {
+            &:nth-child(#{$i}) {
+                @include animation-delay(#{$i * 0.2}s);
+            }
+        }
+        &:hover {
+            @include transform(translate3d(0, 0, 0) translateY(0, -6px));
+        }
+        &.edited {
+            @include box-shadow(0 2px 4px 0 rgba($blue, 0.6));
+        }
+        &.saved {
+            @include box-shadow(0 2px 4px 0 rgba($green, 0.6));
+        }
+        .bookImage {
+            background-color: $white;
+            z-index: 1;
+            @include box-shadow(2px 2px 4px 0 rgba($black, 0.12));
+            cursor: pointer;
+            float: left;
+            width: 115px;
+            height: 170px;
+            top: -5px;
+            position: relative;
+            @include rounded(3px);
+            @include cover-background();
+        }
+        .bookContent {
+            height: 100%;
+            float: left;
+            width: 100%;
+            margin: auto 0;
+            display: inline-block;
+            @include flex(1);
+            padding: 20px;
+            text-align: left;
+            position: relative;
+            .bookName {
+                color: $gray;
+                font-size: 20px;
+            }
+            .bookSubtitle {
+                color: $gray;
+                font-size: 18px;
+                margin-top: 10px;
+            }
+            .bookDate {
+                font-size: 14px;
+                margin-top: 10px;
+                color: $light-gray;
+            }
+            .bookISBIN {
+                font-size: 14px;
+                margin-top: 10px;
+                color: $light-gray;
+            }
+            .bookTheme {
+                position: absolute;
+                bottom: 20px;
+                right: 10px;
+                float: left;
+                margin-right: 10px;
+                .icon{
+                    width: 20px;
+                    height: 20px;
+                    margin: 0px auto 5px;
+
+                    &.aventura{
+                        background-image: icon(aventura, $gray);
+                    }
+                    &.fantasia{
+                        background-image: icon(fantasia, $gray);
+                    }
+                    &.terror{
+                        background-image: icon(terror, $gray);
+                    }
+                    &.novela{
+                        background-image: icon(novela, $gray);
+                    }
+                    &.amor{
+                        background-image: icon(amor, $gray);
+                    }
+                    &.infantil{
+                        background-image: icon(infantil, $gray);
+                    }
+                }
+            }
+        }
+        .bookUsers{
+            text-align: left;
+            padding: 20px;
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                width: 8px;
+            }
+            &::-webkit-scrollbar-thumb {
+                padding-top:10px;
+                @include rounded(100px);
+                background-color: rgba($carto, 0.5);
+                zoom: 1;
+            }
+            &::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px transparent;
+            }
+        }
+        .bookActions {
+            float: left;
+            position: absolute;
+            top:20px;
+            right: 10px;
+            background-color: $white;
+            color: $gray;
+            font-size: 14px;
+            div{
+                float: left;
+                margin-right: 10px;
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+            .user {
+                background-image: icon(user, $gray);
+                &:hover{
+                    background-image: icon(user, $carto);
+                }
+            }
+            .edit {
+                background-image: icon(edit, $gray);
+                &:hover{
+                    background-image: icon(edit, $carto);
+                }
+            }
+            .save {
+                background-image: icon(save, $gray);
+                &:hover{
+                    background-image: icon(save, $carto);
+                }
+            }
+            .delete {
+                background-image: icon(delete, $gray);
+                &:hover{
+                    background-image: icon(delete, $carto);
+                }
+            }
+        }
+        input, select{
+            color: $light-gray;
+            font-size: 12px;
+            padding: 0 8px;
+            width: 370px;
+            height: 20px;
+            margin-bottom: 10px;
+            @include rounded(3px);
+            background-color: $white;
+            border: solid 1px $carto;
+            @include transition(border-color .3s ease-in-out);
+            &.theme {
+                position: absolute;
+                bottom: 20px;
+                right: 10px;
+                float: left;
+                margin-right: 10px;
+                width: 100px;
+            }
+            &:focus,
+            &:active {
+                border-color: $blue;
+            }
+        }
+    }
+}
+
+.flip-container {
+    -webkit-perspective: 1000px;
+    .flipper {
+        transition: 0.6s;
+        -webkit-transform-style: preserve-3d;
+        position: relative;
+        height: 100%;
+        width: calc(100% - 110px);
+        .front, .back {
+            background: $white;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            -webkit-backface-visibility: hidden;
+        }
+        .back {
+            -webkit-transform: rotateX(180deg);
+        }
+        .front {
+            z-index: 2;
+        }
+    }
+    &.users .flipper {
+        -webkit-transform: rotateX(-180deg);
+    }
+}
+
+@include keyframes(intro-to-detail) {
+    0% {
+        -webkit-transform: translate3d(0, 100px, 0);
+        transform: translate3d(0, 100px, 0);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}

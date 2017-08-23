@@ -1,0 +1,30 @@
+@import "../mixins";
+
+.user{
+    margin-bottom: 10px;
+    div{
+        display: inline-block;
+    }
+    .icon{
+        margin-right: 10px;
+        padding: 9px 0px;
+        width: 30px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+        @include rounded(100px);
+    }
+}
+
+.bookItem {
+    @include animation-delay(#{$i * 0.2}s);
+    .user{
+        @for $i from 1 through 15 {
+            &:nth-child(#{$i}) {
+                .icon {
+                    background-color: nth($colors, random(length($colors)));
+                }
+            }
+        }
+    }
+}

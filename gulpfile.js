@@ -3,8 +3,7 @@ var gulp   = require('gulp'),
     jshint = require('gulp-jshint'),
     sass   = require('gulp-sass'),
     uglify = require('gulp-uglify'),
-    concat = require('gulp-concat'),
-    rename = require('gulp-rename');
+    concat = require('gulp-concat');
 
 gulp.task('default', ['watch']);
 
@@ -20,9 +19,8 @@ gulp.task('build-css', function() {
         .pipe(sass({
             outputStyle: 'compressed'
         }))
-        .pipe(concat('library.css'))
-        .pipe(gulp.dest('assets/bundles/css'))
-        .pipe(rename('library.min.css'));
+        .pipe(concat('library.min.css'))
+        .pipe(gulp.dest('assets/bundles/css'));
 });
 
 gulp.task('build-vendor-js', function() {
@@ -35,10 +33,9 @@ gulp.task('build-js', function() {
     var uglyOptions = {
         mangle: false
     };
-    return gulp.src('scripts/**/*.js')
-        .pipe(concat('library.js'))
+    return gulp.src('app/**/*.js')
+        .pipe(concat('library.min.js'))
         .pipe(gulp.dest('assets/bundles/js'))
-        .pipe(rename('library.min.js'))
         .pipe(uglify(uglyOptions))
         .pipe(gulp.dest('assets/bundles/js'));
 });
@@ -46,6 +43,6 @@ gulp.task('build-js', function() {
 gulp.task('build', ['build-css', 'build-vendor-js', 'build-js']);
 
 gulp.task('watch', function() {
-    gulp.watch('scripts/**/*.js', ['build-js']);
+    gulp.watch('app/**/*.js', ['build-js']);
     gulp.watch('assets/scss/**/*.scss', ['build-css']);
 });

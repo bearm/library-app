@@ -1,0 +1,15 @@
+<div class="catalogue block">
+    <div class="container">
+        <div class="actions">
+            <item data-set="{name: 'foobar', active: true}" text="asdf"></item>
+            <button text="Anadir nuevo libro" classname="add" ng-click="addBook()"></button>
+            <searcher></searcher>
+        </div>
+        <div class="booksList">
+            <book ng-repeat="book in books" ng-blur="editing = false;"
+                  ng-init="book.date = (book.metadata | limitTo : -15 | toDate);
+                           book.isbin =  (book.metadata | limitTo : 17 : 1);
+                           book.theme = (book.metadata | limitTo: 20: 18| trim)"></book>
+        </div>
+    </div>
+</div>

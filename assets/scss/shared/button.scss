@@ -1,0 +1,30 @@
+@import "../mixins";
+
+.buttonItem {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 135%;
+    padding: 10px 20px;
+    float: right;
+    margin: 30px 0px;
+    display: inline-block;
+    @include rounded(3px);
+    @include transition(all 0.3s ease-in-out);
+    .icon {
+        position: relative;
+        top: 2px;
+        margin-right: 5px;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background-image: icon(add, $white);
+    }
+    &.add{
+        background-color: $blue;
+        color: $white;
+        &:hover{
+            background-color: rgba($blue, 0.9);
+        }
+    }
+}
