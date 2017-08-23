@@ -7,7 +7,7 @@ angular.module("libraryApp")
                 text: '@',
                 classname: '@'
             },
-            templateUrl: 'app/shared/button/button.html'
+            templateUrl: 'app/components/button/button.html'
         };
     });
 ;

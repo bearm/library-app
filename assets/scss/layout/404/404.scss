@@ -1,4 +1,4 @@
-@import "mixins";
+@import "../../mixins";
 
 body {
     font-size: 16px;
@@ -20,7 +20,7 @@ body {
             display: inline-block;
             width: 100px;
             height: 100px;
-            background-image: url("../images/unicorn.svg");
+            background-image: url("../../images/unicorn.svg");
         }
         .text {
             margin-top: 20px;

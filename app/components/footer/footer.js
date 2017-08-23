@@ -1,7 +1,7 @@
 angular.module("libraryApp")
     .directive("footer", function(){
         return{
-            templateUrl: 'app/shared/footer/footer.html',
+            templateUrl: 'app/components/footer/footer.html',
             replace: true
         }
     });
