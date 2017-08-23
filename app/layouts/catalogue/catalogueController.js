@@ -27,9 +27,6 @@ angular.module('libraryApp')
             book.metadata = this.generateMetadata(book);
             catalogueService.saveBook(book);
         };
-        $scope.validateISBIN = function (book) {
-
-        };
         $scope.generateMetadata = function(selectedBook){
             var paddingTheme = new Array(12).join(' ').substring(selectedBook.length);
             return "L" +
@@ -52,5 +49,23 @@ angular.module('libraryApp')
                 users: {}
             };
             $scope.books.unshift(book);
+        };
+
+        $scope.restoreSearch = function () {
+            $scope.books.forEach(function(book){
+                book.display = true;
+            })
+        };
+        $scope.searchUser = function (searchParam) {
+            $scope.books.forEach(function(book){
+                book.users.forEach(function(user) {
+                    if (user.name != searchParam){
+                        book.display = false;
+                    }
+                })
+            })
+        };
+        $scope.searchBook = function (type, searchParam) {
+
         };
     })

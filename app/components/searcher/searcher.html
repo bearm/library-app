@@ -1,7 +1,7 @@
 <div class="searcher">
     <div class="searchBy">
         Buscar por:
-        <select class="" ng-change="displaySearch = true" ng-model="searchType">
+        <select class="" ng-change="displaySearch = true; restoreSearch()" ng-model="searchType">
             <option value="title">Title</option>
             <option value="author">Author</option>
             <option value="isbin">ISBIN</option>
@@ -11,21 +11,20 @@
     </div>
 
     <div class="advancedSearch" ng-show="displaySearch">
-         <div class="searchInputs" ng-switch on=”searchType”>
-            <input ng-switch-when=”title” class="titleSearch" ng-model="searchParam"/>
-            <input ng-switch-when=”author || theme” class="authorSearch" ng-model="searchParam"/>
-            <input ng-switch-when=”isbin” class="titleSearch" ng-model="searchParam"/>
-            <input ng-switch-when=”author || theme” class="titleSearch" ng-model="searchParam"/>
-
-            <select ng-switch-when=”user" class="usersSearch"
+         <div class="searchInputs" ng-switch on="searchType">
+            <input ng-switch-when="title" class="titleSearch" ng-model="searchParam"/>
+            <input ng-switch-when="author|theme" ng-switch-when-separator="|" class="authorSearch" ng-model="searchParam"/>
+            <input ng-switch-when="isbin" class="titleSearch" ng-model="searchParam"/>
+            <input ng-switch-when="author|theme" ng-switch-when-separator="|" class="titleSearch" ng-model="searchParam"/>
+            <select ng-switch-when="user" class="usersSearch"
                     ng-change="searchUser(searchParam)"
                     ng-show="editing" ng-model="searchParam"
                     ng-options="user for user in users">
             </select>
         </div>
         <div class="actions">
-            <button text="Cancelar" classname="cancel" ng-click="displaySearch = false"></button>
-            <button text="Buscar" classname="accept" ng-click="searchBook(searchType, searchParam); displaySearch = false;"></button>
+            <button text="Cancelar" classname="cancel" ng-click="displaySearch = false; restoreSearch()"></button>
+            <button text="Buscar" classname="accept" ng-hide="searchType = 'user'" ng-click="searchBook(searchType, searchParam); displaySearch = false;"></button>
         </div>
     </div>
 </div>
