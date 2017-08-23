@@ -5,10 +5,6 @@ angular.module('libraryApp')
 
         catalogueService.getBooks()
             .then(function (response) {
-                /*console.log($location.path('/404'));
-
-                $location.path('/404');*/
-
                 $scope.books = response.books;
                 $scope.books.forEach(function(book){
                     book.users.forEach(function(user){
