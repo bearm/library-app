@@ -1,39 +1,50 @@
-<div class="bookItem flip-container" ng-class="{'edited': book.edited, 'saved':book.saved, 'users' : seeUsers}">
-    <div class="bookImage" style="background-image:url('assets/images/{{ book.title | lowercase | searchReplace:' ':'_' }}.jpg')"></div>
-    <div class="flipper">
-        <div class="bookContent front">
-            <div class="bookName" ng-hide="editing"> {{ book.title }}</div>
-            <input class="title editing-label" required ng-minlength=5 ng-maxlength=25 ng-trim="boolean"
-                   ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.title"/>
-
-            <div class="bookSubtitle" ng-hide="editing"> {{ book.author }}</div>
-            <input class="subtitle editing-label" required ng-minlength=5 ng-maxlength=25 ng-trim="boolean"
-                   ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.author"/>
-
-            <div class="bookDate" ng-hide="editing"> Publication date: {{ book.date | date:'MM/dd/yyyy' }}</div>
-            <input class="date editing-label" type="date" ng-change="book.edited = true; book.saved = false" ng-show="editing"
-                   ng-model="book.date"
-                   value="{{ book.date | date:'yyyy-MM-dd' }}"/>
-            <div class="bookISBIN" ng-hide="editing"> {{ book.isbin }} </div>
-            <input class="isbin editing-label" required ng-minlength=17 ng-maxlength=17 ng-trim="boolean"
-                   ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.isbin"
-                   value="{{ book.isbin }}"/>
-
-            <div class="bookTheme" ng-hide="editing">
-                <div class="icon icon_base" ng-class="book.theme | removeAccents"></div>
-                {{ book.theme | capitalize }}
+<div class="bookItem" ng-class="{'edited': book.edited, 'saved':book.saved, 'users' : seeUsers}">
+    <div class="bookImage"
+         style="background-image:url('assets/images/{{ book.title | lowercase | searchReplace:' ':'_' }}.jpg')"></div>
+    <div class="bookContent">
+        <div class="bookInfo front">
+            <div class="inputGroup big">
+                <div class="label" ng-hide="editing"> {{ book.title }}</div>
+                <input class="editing-label" required ng-minlength=5 ng-maxlength=25 ng-trim="boolean"
+                       ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.title"/>
             </div>
-            <select class="theme editing-label" ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.theme">
-                <option ng-repeat="theme in themes" value="{{theme}}" ng-selected="book.theme">{{theme}}</option>
-            </select>
+            <div class="inputGroup medium">
+                <div class="label" ng-hide="editing"> {{ book.author }}</div>
+                <input class="editing-label" required ng-minlength=5 ng-maxlength=25 ng-trim="boolean"
+                       ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.author"/>
+            </div>
+            <div class="inputGroup small">
+                <div class="label" ng-hide="editing"> Publication date: {{ book.date | date:'MM/dd/yyyy' }}</div>
+                <input class="editing-label" type="date" ng-change="book.edited = true; book.saved = false"
+                       ng-show="editing"
+                       ng-model="book.date"
+                       value="{{ book.date | date:'yyyy-MM-dd' }}"/>
+            </div>
+            <div class="inputGroup small">
+                <div class="label" ng-hide="editing"> {{ book.isbin }}</div>
+                <input class="editing-label" required ng-minlength=17 ng-maxlength=17 ng-trim="boolean"
+                       ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.isbin"
+                       value="{{ book.isbin }}"/>
+            </div>
+            <div class="inputGroup small theme">
+                <div class="label" ng-hide="editing">
+                    <div class="icon icon_base" ng-class="book.theme | removeAccents"></div>
+                    {{ book.theme | capitalize }}
+                </div>
+                <select class="theme editing-label" required ng-change="book.edited = true; book.saved = false"
+                        ng-show="editing" ng-model="book.theme"
+                        ng-options="theme for theme in themes" ng-selected="{{book.theme}}">
+                </select>
+            </div>
         </div>
-        <div class="bookUsers back" ng-show="seeUsers">
+        <div class="bookUsers backFace " ng-show="seeUsers">
             <user ng-repeat="user in book.users"></user>
         </div>
     </div>
     <div class="bookActions">
         <div class="edit icon_base" ng-hide="editing" ng-click="editing = !editing;"></div>
-        <div class="save icon_base" ng-show="editing" ng-click="editing = !editing; book.saved = true; saveBook(book)"></div>
+        <div class="save icon_base" ng-show="editing"
+             ng-click="editing = !editing; book.saved = true; saveBook(book)"></div>
         <div class="delete icon_base" ng-click="deleteBook(book, $index)"></div>
         <div class="user icon_base" ng-click="seeUsers = !seeUsers"></div>
     </div>

@@ -1,4 +1,5 @@
 @import "icons";
+@import "animations";
 
 $blue: #5a9ff1;
 $red: #fa4472;
@@ -46,20 +47,6 @@ $colors: $blue, $red, $orange, $green, $yellow, $carto;
 @mixin opacity($opacity) {
     opacity: $opacity;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity})";
-}
-
-@mixin keyframes($name) {
-    @-webkit-keyframes #{$name} {
-        @content;
-    }
-
-    @-moz-keyframes #{$name} {
-        @content;
-    }
-
-    @keyframes #{$name} {
-        @content;
-    }
 }
 
 @mixin transition($transition...) {

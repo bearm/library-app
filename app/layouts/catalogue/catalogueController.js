@@ -1,5 +1,5 @@
 angular.module('libraryApp')
-    .controller('catalogueController', function ($scope, catalogueService, toTimestampFilter) {
+    .controller('catalogueController', function ($scope, $location, catalogueService, toTimestampFilter) {
         $scope.books = [];
         $scope.users = [];
 
@@ -15,7 +15,7 @@ angular.module('libraryApp')
                 });
             })
             .catch(function () {
-                //$location.path('/404');
+                $location.path('/404');
             });
 
         catalogueService.getThemes()

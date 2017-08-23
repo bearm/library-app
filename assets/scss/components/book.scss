@@ -2,7 +2,6 @@
 .booksList{
     margin-top: 40px;
     .bookItem {
-        @include display-flex();
         float: left;
         width: 800px;
         height: 160px;
@@ -11,9 +10,10 @@
         position: relative;
         padding-right: 1px;
         background-color: $white;
-        @include rounded(3px);
-        @include transition(all .5s ease-in-out);
+        -webkit-perspective: 1000px;
+        @include display-flex();
         @include box-shadow(0 2px 4px 0 rgba($black, 0.12));
+        @include rounded(3px);
         @include opacity(0);
         @include transition(opacity .5s cubic-bezier(.4, .85, .49, .99) .4s, transform .5s cubic-bezier(.4, .85, .49, .99) .4s);
         @include animation(intro-to-detail .5s linear alternate forwards);
@@ -31,6 +31,9 @@
         &.saved {
             @include box-shadow(0 2px 4px 0 rgba($green, 0.6));
         }
+        &.users .bookContent {
+            -webkit-transform: rotateX(-180deg);
+        }
         .bookImage {
             background-color: $white;
             z-index: 1;
@@ -45,81 +48,56 @@
             @include cover-background();
         }
         .bookContent {
-            height: 100%;
-            float: left;
-            width: 100%;
-            margin: auto 0;
-            display: inline-block;
-            @include flex(1);
-            padding: 20px;
-            text-align: left;
+            transition: 0.6s;
+            -webkit-transform-style: preserve-3d;
             position: relative;
-            .bookName {
-                color: $gray;
-                font-size: 20px;
-            }
-            .bookSubtitle {
-                color: $gray;
-                font-size: 18px;
-                margin-top: 10px;
-            }
-            .bookDate {
-                font-size: 14px;
-                margin-top: 10px;
-                color: $light-gray;
-            }
-            .bookISBIN {
-                font-size: 14px;
-                margin-top: 10px;
-                color: $light-gray;
-            }
-            .bookTheme {
-                position: absolute;
-                bottom: 20px;
-                right: 10px;
+            height: 100%;
+            width: calc(100% - 110px);
+            text-align: left;
+            .bookInfo {
+                @include flex(1);
                 float: left;
-                margin-right: 10px;
-                .icon{
-                    width: 20px;
-                    height: 20px;
-                    margin: 0px auto 5px;
-
-                    &.aventura{
-                        background-image: icon(aventura, $gray);
-                    }
-                    &.fantasia{
-                        background-image: icon(fantasia, $gray);
-                    }
-                    &.terror{
-                        background-image: icon(terror, $gray);
-                    }
-                    &.novela{
-                        background-image: icon(novela, $gray);
-                    }
-                    &.amor{
-                        background-image: icon(amor, $gray);
-                    }
-                    &.infantil{
-                        background-image: icon(infantil, $gray);
+                height: 100%;
+                width: 100%;
+                margin: auto 0;
+                display: inline-block;
+                padding: 20px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 2;
+                -webkit-backface-visibility: hidden;
+                .inputGroup {
+                    margin-bottom: 10px;
+                    &.theme {
+                        position: absolute;
+                        bottom: 20px;
+                        right: 10px;
+                        float: left;
+                        margin-right: 10px;
                     }
                 }
             }
-        }
-        .bookUsers{
-            text-align: left;
-            padding: 20px;
-            overflow-y: scroll;
-            &::-webkit-scrollbar {
-                width: 8px;
-            }
-            &::-webkit-scrollbar-thumb {
-                padding-top:10px;
-                @include rounded(100px);
-                background-color: rgba($carto, 0.5);
-                zoom: 1;
-            }
-            &::-webkit-scrollbar-track {
-                -webkit-box-shadow: inset 0 0 6px transparent;
+            .bookUsers {
+                padding: 20px;
+                overflow-y: scroll;
+                -webkit-transform: rotateX(180deg);
+                position: absolute;
+                left: 0;
+                top: 0;
+                -webkit-backface-visibility: hidden;
+                &::-webkit-scrollbar {
+                    width: 8px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    padding-top: 10px;
+                    @include rounded(100px);
+                    background-color: rgba($carto, 0.5);
+                    zoom: 1;
+                }
+                &::-webkit-scrollbar-track {
+                    -webkit-box-shadow: inset 0 0 6px transparent;
+                }
             }
         }
         .bookActions {
@@ -162,71 +140,5 @@
                 }
             }
         }
-        input, select{
-            color: $light-gray;
-            font-size: 12px;
-            padding: 0 8px;
-            width: 370px;
-            height: 20px;
-            margin-bottom: 10px;
-            @include rounded(3px);
-            background-color: $white;
-            border: solid 1px $carto;
-            @include transition(border-color .3s ease-in-out);
-            &.theme {
-                position: absolute;
-                bottom: 20px;
-                right: 10px;
-                float: left;
-                margin-right: 10px;
-                width: 100px;
-            }
-            &:focus,
-            &:active {
-                border-color: $blue;
-            }
-        }
-    }
-}
-
-.flip-container {
-    -webkit-perspective: 1000px;
-    .flipper {
-        transition: 0.6s;
-        -webkit-transform-style: preserve-3d;
-        position: relative;
-        height: 100%;
-        width: calc(100% - 110px);
-        .front, .back {
-            background: $white;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            -webkit-backface-visibility: hidden;
-        }
-        .back {
-            -webkit-transform: rotateX(180deg);
-        }
-        .front {
-            z-index: 2;
-        }
-    }
-    &.users .flipper {
-        -webkit-transform: rotateX(-180deg);
-    }
-}
-
-@include keyframes(intro-to-detail) {
-    0% {
-        -webkit-transform: translate3d(0, 100px, 0);
-        transform: translate3d(0, 100px, 0);
-        opacity: 0;
-    }
-    100% {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
     }
 }

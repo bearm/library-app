@@ -17,11 +17,15 @@
 }
 
 .bookItem {
-    .user{
-        @for $i from 1 through 15 {
-            &:nth-child(#{$i}) {
-                .icon {
-                    background-color: nth($colors, random(length($colors)));
+    @for $i from 1 through 15 {
+        &:nth-child(#{$i}) {
+            .user{
+                @for $i from 1 through 15 {
+                    &:nth-child(#{$i}) {
+                        .icon {
+                            background-color: nth($colors, random(length($colors)));
+                        }
+                    }
                 }
             }
         }
