@@ -33,7 +33,7 @@
                 </div>
                 <select class="theme editing-label" required ng-change="book.edited = true; book.saved = false"
                         ng-show="editing" ng-model="book.theme"
-                        ng-options="theme for theme in themes" ng-selected="{{book.theme}}">
+                        ng-options="theme for theme in themes">
                 </select>
             </div>
         </div>
@@ -43,8 +43,7 @@
     </div>
     <div class="bookActions">
         <div class="edit icon_base" ng-hide="editing" ng-click="editing = !editing;"></div>
-        <div class="save icon_base" ng-show="editing"
-             ng-click="editing = !editing; book.saved = true; saveBook(book)"></div>
+        <div class="save icon_base" ng-show="editing" ng-click="editing = !editing; book.saved = true; saveBook(book)"></div>
         <div class="delete icon_base" ng-click="deleteBook(book, $index)"></div>
         <div class="user icon_base" ng-click="seeUsers = !seeUsers"></div>
     </div>

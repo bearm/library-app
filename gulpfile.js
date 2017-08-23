@@ -7,13 +7,6 @@ var gulp   = require('gulp'),
 
 gulp.task('default', ['watch']);
 
-//TODO TEST
-/*gulp.task('jshint', function() {
-    return gulp.src('scripts/!**!/!*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'));
-});*/
-
 gulp.task('build-css', function() {
     return gulp.src('assets/scss/**/*.scss')
         .pipe(sass({
