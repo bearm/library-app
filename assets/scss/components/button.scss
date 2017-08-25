@@ -23,21 +23,21 @@
             background-image: icon(add, $white);
         }
         &:hover{
-            background-color: rgba($blue, 0.9);
+            background-color: rgba($blue, 0.7);
         }
     }
     &.cancel{
         background-color: $light-gray;
         color: $white;
         &:hover{
-            background-color: rgba($light-gray, 0.9);
+            background-color: rgba($light-gray, 0.7);
         }
     }
     &.accept{
         background-color: $green;
         color: $white;
         &:hover{
-            background-color: rgba($green, 0.9);
+            background-color: rgba($green, 0.7);
         }
     }
 }

@@ -1,4 +1,34 @@
 @import "../../mixins";
+@import "../../breakpoints";
+
+
+.block{
+    width: 100%;
+    float: left;
+    .container{
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-width: 800px;
+    }
+    @include tablet {
+        .container {
+            max-width: 560px;
+        }
+    }
+
+    @include mobile {
+        .container {
+            max-width: 345px;
+        }
+    }
+
+    @include mobile-small {
+        .container {
+            width: 290px;
+        }
+    }
+}
 
 .catalogue{
     .actionsCatalogue{
@@ -12,7 +42,5 @@
         }
         .buttonItem.add{
         }
-    }
-    .booksList{
     }
 }

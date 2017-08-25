@@ -1,5 +1,5 @@
 <div class="bookItem" ng-class="{'edited': book.edited, 'saved':book.saved, 'users' : seeUsers}"
-    ng-show="book.display">
+     ng-show="book.display">
     <div class="bookImage"
          style="background-image:url('assets/images/{{ book.title | lowercase | searchReplace:' ':'_' }}.jpg')"></div>
     <div class="bookContent">
@@ -33,8 +33,8 @@
                     {{ book.theme | capitalize }}
                 </div>
                 <select class="theme editing-label" required ng-change="book.edited = true; book.saved = false"
-                        ng-show="editing" ng-model="book.theme"
-                        ng-options="theme for theme in themes">
+                        ng-show="editing" ng-model="book.theme">
+                    <option ng-repeat="theme in themes" selected="{{ book.theme == theme }}">{{theme}}</option>
                 </select>
             </div>
         </div>
@@ -44,7 +44,8 @@
     </div>
     <div class="bookActions">
         <div class="edit icon_base" ng-hide="editing" ng-click="editing = !editing;"></div>
-        <div class="save icon_base" ng-show="editing" ng-click="editing = !editing; book.saved = true; saveBook(book)"></div>
+        <div class="save icon_base" ng-show="editing"
+             ng-click="editing = !editing; book.saved = true; saveBook(book)"></div>
         <div class="delete icon_base" ng-click="deleteBook(book, $index)"></div>
         <div class="user icon_base" ng-click="seeUsers = !seeUsers"></div>
     </div>

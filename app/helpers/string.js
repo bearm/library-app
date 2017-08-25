@@ -46,10 +46,12 @@ app.filter('capitalize', function () {
     }
 })
 .filter('trim', function () {
-    return function (str, search, replace) {
-        str = str || '';
-        search = search || '';
-        replace = replace || '';
-        return str.replace(new RegExp(search, 'g'), replace);
+    return function (str) {
+        return str.trim();
+    }
+})
+.filter('empty', function () {
+    return function (text) {
+        return  text == undefined || text == "";
     }
 });

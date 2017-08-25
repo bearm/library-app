@@ -21,7 +21,7 @@ app.service('catalogueService', function ($q, $http) {
 
         $http.get('assets/mock/themes.json').then(
             function (data) {
-                defered.resolve(data);
+                defered.resolve(data.data);
             },
             function (err) {
                 defered.reject(err)

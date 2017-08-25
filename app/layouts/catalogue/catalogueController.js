@@ -22,6 +22,18 @@ app.controller('catalogueController', function ($scope, $location, catalogueServ
             $scope.themes = response;
         });
 
+
+    window.addEventListener("beforeunload", function (e) {
+        $scope.books.forEach(function(book){
+            if (book.edited && !book.saved){
+                var confirmationMessage = "\o/";
+                (e || window.event).returnValue = confirmationMessage;
+                return confirmationMessage;
+            }
+        });
+        return true;
+    });
+
     $scope.saveBook = function (book) {
         book.metadata = this.generateMetadata(book);
         catalogueService.saveBook(book);

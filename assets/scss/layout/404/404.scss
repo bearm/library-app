@@ -1,4 +1,5 @@
 @import "../../mixins";
+@import "../../breakpoints";
 
 .errorLanding {
     width: 100%;
@@ -28,5 +29,18 @@
                 color: $red;
             }
         }
+    }
+
+
+    @include tablet {
+
+    }
+
+    @include mobile {
+
+    }
+
+    @include mobile-small {
+
     }
 }

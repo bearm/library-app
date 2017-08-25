@@ -5,7 +5,7 @@
             <button text="Anadir nuevo libro" classname="add" ng-click="addBook()"></button>
         </div>
         <div class="booksList">
-            <book ng-repeat="book in books | orderBy: 'title'"
+            <book ng-repeat="book in books"
                   ng-init="book.display = true;
                            book.date = (book.metadata | limitTo : -15 | toDate);
                            book.isbin =  (book.metadata | limitTo : 17 : 1);
