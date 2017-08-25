@@ -40,22 +40,22 @@
             }
         }
     }
-    input, select{
-        color: $light-gray;
-        font-size: 12px;
-        padding: 0 8px;
-        width: 370px;
-        height: 20px;
-        @include rounded(3px);
-        background-color: $white;
-        border: solid 1px $carto;
-        @include transition(border-color .3s ease-in-out);
-        &:focus,
-        &:active {
-            border-color: $blue;
-        }
+}
+input, select{
+    color: $light-gray;
+    font-size: 12px;
+    padding: 0 8px;
+    width: 370px;
+    height: 20px;
+    @include rounded(3px);
+    background-color: $white;
+    border: solid 1px $carto;
+    @include transition(border-color .3s ease-in-out);
+    &:focus,
+    &:active {
+        border-color: $blue;
     }
-    select{
-        width: 100px;
-    }
+}
+select{
+    width: 100px;
 }

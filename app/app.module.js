@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module("libraryApp", ["ngRoute"])
+var app = angular.module("libraryApp", ["ngRoute"])

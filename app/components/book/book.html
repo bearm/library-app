@@ -1,4 +1,5 @@
-<div class="bookItem" ng-class="{'edited': book.edited, 'saved':book.saved, 'users' : seeUsers}">
+<div class="bookItem" ng-class="{'edited': book.edited, 'saved':book.saved, 'users' : seeUsers}"
+    ng-show="book.display">
     <div class="bookImage"
          style="background-image:url('assets/images/{{ book.title | lowercase | searchReplace:' ':'_' }}.jpg')"></div>
     <div class="bookContent">

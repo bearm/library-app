@@ -1,0 +1,18 @@
+@import "../../mixins";
+
+.catalogue{
+    .actionsCatalogue{
+        margin: 40px 0px;
+        float: left;
+        width: 100%;
+        @include display-flex();
+        .searcher{
+            @include flex(1);
+            text-align: left;
+        }
+        .buttonItem.add{
+        }
+    }
+    .booksList{
+    }
+}
