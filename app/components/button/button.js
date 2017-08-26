@@ -6,7 +6,13 @@ app.directive('button', function () {
             text: '@',
             classname: '@'
         },
-        templateUrl: 'app/components/button/button.html'
+        template: '<div class="buttonItem {{ classname }}">' +
+        '    <div class="display_table">' +
+        '        <div class="display_table_cell">' +
+        '            <span class="icon icon_base"></span>' +
+        '            <span class="text"> {{ text }} </span>' +
+        '        </div>' +
+        '    </div>' +
+        '</div>'
     };
 });
-;

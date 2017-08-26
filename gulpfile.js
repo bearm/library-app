@@ -29,8 +29,8 @@ gulp.task('build-js', function() {
     return gulp.src('app/**/*.js')
         .pipe(concat('library.min.js'))
         .pipe(gulp.dest('assets/bundles/js'))
-        /*.pipe(uglify(uglyOptions))
-        .pipe(gulp.dest('assets/bundles/js'))*/;
+        .pipe(uglify(uglyOptions))
+        .pipe(gulp.dest('assets/bundles/js'));
 });
 
 gulp.task('build', ['build-css', 'build-vendor-js', 'build-js']);

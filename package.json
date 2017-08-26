@@ -1,24 +1,24 @@
 {
-  "name": "packlink",
+  "name": "libraryApp",
   "version": "0.0.0",
-  "description": "packlink package",
+  "description": "libraryApp package",
   "main": "/scripts/app.js",
   "scripts": {
     "test": "make test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/beatrizruizmatias/packlink.git"
+    "url": "https://github.com/beatrizruizmatias/library-app.git"
   },
   "keywords": [
     "angular",
     "gulp",
-    "packlink"
+    "libraryApp"
   ],
   "author": "Beatriz Ruiz Matias",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/beatrizruizmatias/packlink/issues"
+    "url": "https://github.com/beatrizruizmatias/library-app/issues"
   },
   "devDependencies": {
     "gulp": "~3.9.1",

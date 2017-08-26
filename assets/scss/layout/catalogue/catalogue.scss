@@ -44,6 +44,7 @@
     }
     @include all-mobile {
         .actionsCatalogue{
+            margin: 25px 0px;
             .buttonItem.add{
                 position: absolute;
                 right: 0px;

@@ -19,7 +19,7 @@ app.controller('searcherController', function ($scope) {
     };
     $scope.restoreSearch = function () {
         if ($scope.searchType == "") {
-            $scope.searchType == "title"
+            $scope.searchType = "title"
         }
         $scope.books.forEach(function (book) {
             book.display = true;
@@ -45,17 +45,11 @@ app.controller('searcherController', function ($scope) {
         });
     };
     $scope.searchBook = function () {
-        var display = true, matchTexts = [], searchTexts = [], searchType = $scope.searchType.toLowerCase();
+        var display = true, matchTexts, searchTexts, searchParameters, searchType = $scope.searchType.toLowerCase();
         $scope.books.forEach(function (book) {
-            if (searchType == AUTHOR_TYPE) {
-                matchTexts.push(book.metadata.substr(18, 20).toLowerCase().trim());
-                searchTexts.push($scope.searchParams[THEME_TYPE].toLowerCase().trim());
-            } else if (searchType == THEME_TYPE) {
-                searchTexts.push($scope.searchParams[AUTHOR_TYPE].toLowerCase().trim());
-                matchTexts.push(book['author'].toLowerCase().trim());
-            }
-            matchTexts.push(book[searchType.toLowerCase()]);
-            searchTexts.push($scope.searchParams[searchType].toLowerCase().trim());
+            searchParameters = $scope.getSearchParams(searchType, book);
+            matchTexts = searchParameters[0];
+            searchTexts = searchParameters[1];
             matchTexts.forEach(function (matchText, k) {
                 if (matchText == undefined || searchTexts[k] == undefined ||
                     (searchTexts[k] != "" && !matchText.toLowerCase().includes(searchTexts[k]))) {
@@ -68,4 +62,17 @@ app.controller('searcherController', function ($scope) {
             display = true;
         });
     };
+    $scope.getSearchParams = function(searchType, book, searchParams){
+        var matchTexts = [], searchTexts = [];
+        if (searchType == AUTHOR_TYPE) {
+            matchTexts.push(book.metadata.substr(18, 20).toLowerCase().trim());
+            searchTexts.push(searchParams[THEME_TYPE].toLowerCase().trim());
+        } else if (searchType == THEME_TYPE) {
+            searchTexts.push(searchParams[AUTHOR_TYPE].toLowerCase().trim());
+            matchTexts.push(book['author'].toLowerCase().trim());
+        }
+        matchTexts.push(book[searchType.toLowerCase()]);
+        searchTexts.push(searchParams[searchType].toLowerCase().trim());
+        return [matchTexts, searchTexts]
+    }
 });

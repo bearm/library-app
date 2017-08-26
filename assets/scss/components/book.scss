@@ -69,9 +69,15 @@
             -webkit-backface-visibility: hidden;
             .inputGroup {
                 margin-bottom: 10px;
+                .label{
+                    padding-right: 100px;
+                }
                 &.theme {
+                    .label{
+                        padding-right: 0px;
+                    }
                     position: absolute;
-                    bottom: 20px;
+                    bottom: 17px;
                     right: 10px;
                     float: left;
                     margin-right: 10px;
@@ -80,6 +86,8 @@
         }
         .bookUsers {
             padding: 20px;
+            height: 100%;
+            width: 100%;
             overflow-y: scroll;
             -webkit-transform: rotateX(180deg);
             position: absolute;
@@ -143,10 +151,20 @@
         font-size: 10px;
         color: $red;
         position: absolute;
-        top: 0;
+        bottom: 10px;
     }
     @include tablet {
         width: 560px;
+        .bookContent {
+            .bookInfo {;
+                .inputGroup {
+                    input{
+                        width: 290px;
+                    }
+                }
+            }
+        }
+
     }
 
     @include mobile {
@@ -164,10 +182,13 @@
         }
         .bookContent {
             width: calc(100% - 90px);
-            .bookInfo {;
+            .bookInfo {
                 padding: 10px;
                 .inputGroup {
                     margin-bottom: 10px;
+                    .label{
+                        padding-right: 0px;
+                    }
                     &.theme {
                         bottom: 0px;
                         right: 0px;
@@ -178,8 +199,8 @@
                     }
                 }
             }
-            .bookUsers {
-                padding: 20px;
+            .bookUsers{
+                padding: 10px;
             }
         }
         .bookActions {
@@ -190,6 +211,10 @@
                 width: 18px;
                 height: 18px;
             }
+        }
+        .errorMessage{
+            top: 0;
+            bottom: inherit;
         }
     }
 }
