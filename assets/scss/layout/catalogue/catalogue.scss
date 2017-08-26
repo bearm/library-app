@@ -35,12 +35,19 @@
         margin: 40px 0px;
         float: left;
         width: 100%;
+        position: relative;
         @include display-flex();
         .searcher{
             @include flex(1);
             text-align: left;
         }
-        .buttonItem.add{
+    }
+    @include all-mobile {
+        .actionsCatalogue{
+            .buttonItem.add{
+                position: absolute;
+                right: 0px;
+            }
         }
     }
 }

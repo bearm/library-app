@@ -1,5 +1,4 @@
 @import "icons";
-@import "animations";
 
 $blue: #5a9ff1;
 $red: #fa4472;
@@ -104,4 +103,18 @@ $colors: $blue, $red, $orange, $green, $yellow, $carto;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+}
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+
+    @keyframes #{$name} {
+        @content;
+    }
 }

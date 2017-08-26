@@ -1,4 +1,4 @@
-app.controller('searcherController', function ($scope, emptyFilter) {
+app.controller('searcherController', function ($scope) {
 
     const THEME_TYPE = "theme";
     const AUTHOR_TYPE = "author";
@@ -47,9 +47,6 @@ app.controller('searcherController', function ($scope, emptyFilter) {
     $scope.searchBook = function () {
         var display = true, matchTexts = [], searchTexts = [], searchType = $scope.searchType.toLowerCase();
         $scope.books.forEach(function (book) {
-            console.log("---------------- NUEVO LIBRO ---------------");
-            console.log("---------------- " + display + "---------------");
-
             if (searchType == AUTHOR_TYPE) {
                 matchTexts.push(book.metadata.substr(18, 20).toLowerCase().trim());
                 searchTexts.push($scope.searchParams[THEME_TYPE].toLowerCase().trim());
@@ -59,17 +56,12 @@ app.controller('searcherController', function ($scope, emptyFilter) {
             }
             matchTexts.push(book[searchType.toLowerCase()]);
             searchTexts.push($scope.searchParams[searchType].toLowerCase().trim());
-
-            //console.log(matchTexts, searchTexts);
             matchTexts.forEach(function (matchText, k) {
-                console.log(matchText, searchTexts[k]);
-                if (matchText == undefined ||  searchTexts[k] == undefined ||
+                if (matchText == undefined || searchTexts[k] == undefined ||
                     (searchTexts[k] != "" && !matchText.toLowerCase().includes(searchTexts[k]))) {
                     display = false;
                 }
             });
-            console.log("---------------- " + display + "---------------");
-            console.log("---------------- FIN LIBRO ---------------");
             book.display = display;
             matchTexts = [];
             searchTexts = [];

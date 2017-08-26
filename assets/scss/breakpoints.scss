@@ -16,6 +16,12 @@ $mobile-small: 375px;
     }
 }
 
+@mixin all-mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}
+
 @mixin mobile {
     @media (min-width: #{$mobile-small + 1px}) and (max-width: #{$mobile}) {
         @content;

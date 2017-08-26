@@ -17,7 +17,6 @@
                 Selecciona una tematica:
                 <select ng-model="searchParams.theme" ng-change="searchBook()" ng-options="theme for theme in themes"></select>
             </div>
-
             <div ng-switch-when="user" class="inputGroup small">
                 Selecciona un usuario:
                 <select ng-change="searchUser()" ng-model="searchParams.user" ng-options="user for user in users"></select>

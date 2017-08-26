@@ -6,37 +6,32 @@
         <div class="bookInfo front">
             <div class="inputGroup big">
                 <div class="label" ng-hide="editing"> {{ book.title }}</div>
-                <input class="editing-label" required ng-minlength=5 ng-maxlength=25 ng-trim="boolean"
-                       ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.title"/>
+                <input ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.title" />
             </div>
             <div class="inputGroup medium">
                 <div class="label" ng-hide="editing"> {{ book.author }}</div>
-                <input class="editing-label" required ng-minlength=5 ng-maxlength=25 ng-trim="boolean"
-                       ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.author"/>
+                <input ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.author" />
             </div>
             <div class="inputGroup small">
                 <div class="label" ng-hide="editing"> Publication date: {{ book.date | date:'MM/dd/yyyy' }}</div>
-                <input class="editing-label" type="date" ng-change="book.edited = true; book.saved = false"
-                       ng-show="editing"
-                       ng-model="book.date"
-                       value="{{ book.date | date:'yyyy-MM-dd' }}"/>
+                <input ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.date" type="date"/>
             </div>
             <div class="inputGroup small">
                 <div class="label" ng-hide="editing"> {{ book.isbin }}</div>
-                <input class="editing-label" required ng-minlength=17 ng-maxlength=17 ng-trim="boolean"
-                       ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.isbin"
-                       value="{{ book.isbin }}"/>
+                <input ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.isbin"/>
             </div>
             <div class="inputGroup small theme">
                 <div class="label" ng-hide="editing">
                     <div class="icon icon_base" ng-class="book.theme | removeAccents"></div>
                     {{ book.theme | capitalize }}
                 </div>
-                <select class="theme editing-label" required ng-change="book.edited = true; book.saved = false"
-                        ng-show="editing" ng-model="book.theme">
+                <select ng-change="book.edited = true; book.saved = false" ng-show="editing" ng-model="book.theme"
+                        class="theme">
                     <option ng-repeat="theme in themes" selected="{{ book.theme == theme }}">{{theme}}</option>
                 </select>
             </div>
+
+            <div id="errorMessage" class="errorMessage" ng-show="!book.valid && !book.saved"></div>
         </div>
         <div class="bookUsers backFace " ng-show="seeUsers">
             <user ng-repeat="user in book.users"></user>
@@ -45,7 +40,7 @@
     <div class="bookActions">
         <div class="edit icon_base" ng-hide="editing" ng-click="editing = !editing;"></div>
         <div class="save icon_base" ng-show="editing"
-             ng-click="editing = !editing; book.saved = true; saveBook(book)"></div>
+             ng-click="editing = saveBook(book)"></div>
         <div class="delete icon_base" ng-click="deleteBook(book, $index)"></div>
         <div class="user icon_base" ng-click="seeUsers = !seeUsers"></div>
     </div>

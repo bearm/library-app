@@ -35,7 +35,7 @@
         -webkit-transform: rotateX(-180deg);
     }
     .bookImage {
-        background-color: $white;
+        background-color: $carto;
         z-index: 1;
         @include box-shadow(2px 2px 4px 0 rgba($black, 0.12));
         cursor: pointer;
@@ -105,7 +105,6 @@
         position: absolute;
         top: 20px;
         right: 10px;
-        background-color: $white;
         color: $gray;
         font-size: 14px;
         div {
@@ -140,7 +139,12 @@
             }
         }
     }
-
+    .errorMessage{
+        font-size: 10px;
+        color: $red;
+        position: absolute;
+        top: 0;
+    }
     @include tablet {
         width: 560px;
     }
@@ -151,5 +155,54 @@
 
     @include mobile-small {
         width: 290px;
+    }
+
+    @include all-mobile {
+        .bookImage {
+            width: 90px;
+            height: 170px;
+        }
+        .bookContent {
+            width: calc(100% - 90px);
+            .bookInfo {;
+                padding: 10px;
+                .inputGroup {
+                    margin-bottom: 10px;
+                    &.theme {
+                        bottom: 0px;
+                        right: 0px;
+                    }
+
+                    input, select{
+                        width: 100%;
+                    }
+                }
+            }
+            .bookUsers {
+                padding: 20px;
+            }
+        }
+        .bookActions {
+            bottom: 2px;
+            left: 100px;
+            top:inherit;
+            div {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+}
+
+@include keyframes(intro-to-detail) {
+    0% {
+        -webkit-transform: translate3d(0, 100px, 0);
+        transform: translate3d(0, 100px, 0);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
     }
 }

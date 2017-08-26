@@ -6,7 +6,7 @@
         </div>
         <div class="booksList">
             <book ng-repeat="book in books"
-                  ng-init="book.display = true;
+                  ng-init="book.display = true; book.valid = true;
                            book.date = (book.metadata | limitTo : -15 | toDate);
                            book.isbin =  (book.metadata | limitTo : 17 : 1);
                            book.theme = ((book.metadata | limitTo: 20: 18) | trim)"></book>

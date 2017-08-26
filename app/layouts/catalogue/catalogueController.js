@@ -1,4 +1,4 @@
-app.controller('catalogueController', function ($scope, $location, catalogueService, toTimestampFilter) {
+app.controller('catalogueController', function ($scope, $location, catalogueService, toTimestampFilter, validDateFilter) {
     $scope.books = [];
     $scope.users = [];
 
@@ -24,19 +24,57 @@ app.controller('catalogueController', function ($scope, $location, catalogueServ
 
 
     window.addEventListener("beforeunload", function (e) {
-        $scope.books.forEach(function(book){
-            if (book.edited && !book.saved){
-                var confirmationMessage = "\o/";
-                (e || window.event).returnValue = confirmationMessage;
-                return confirmationMessage;
+        var isEditedButNotSaved = false;
+        $scope.books.forEach(function (book) {
+            if (book.edited && !book.saved) {
+                isEditedButNotSaved = true;
             }
         });
+        if (isEditedButNotSaved) {
+            var confirmationMessage = "\o/";
+            (e || window.event).returnValue = confirmationMessage;
+            return confirmationMessage;
+        }
         return true;
     });
 
+    $scope.isvalidBook = function (book) {
+        if (book.title == "" || book.author == "" ||
+            book.date == "" || book.theme == "" ||
+            book.isbin == "") {
+            return "Revisa que no haya ninguno vacio.";
+        }
+        if (book.title.length < 5 || book.author.length < 5) {
+            return "Título o autor demasiado corto.";
+        }
+        if (book.title.length > 25 || book.author.length > 25) {
+            return "Título o autor demasiado largo";
+        }
+        if (!validDateFilter(book.date)) {
+            return "La fecha no es valida";
+        }
+        var regex = "[0-9]{3}-[0-9]-[0-9]{3}-[0-9]{5}-[0-9]";
+        var match = book.isbin.match(regex);
+        if (!(match != null && book.isbin == match[0])) {
+            return "El ISBIN no es valido xxx-x-xxx-xxxxx-x";
+        }
+        if (book.theme.length == "") {
+            return "Debes seleccionar una tematica";
+        }
+        return true;
+    };
+
     $scope.saveBook = function (book) {
-        book.metadata = this.generateMetadata(book);
-        catalogueService.saveBook(book);
+        var isValid = $scope.isvalidBook(book)
+        if (isValid == true) {
+            book.metadata = this.generateMetadata(book);
+            catalogueService.saveBook(book);
+            book.saved = true;
+            return false;
+        }
+        document.getElementById("errorMessage").innerHTML = isValid;
+        book.valid = false;
+        return true;
     };
     $scope.generateMetadata = function (selectedBook) {
         var paddingTheme = new Array(12).join(' ').substring(selectedBook.length);

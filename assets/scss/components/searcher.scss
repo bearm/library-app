@@ -17,7 +17,7 @@
         padding: 20px;
         background: $white;
         position: relative;
-        @include transition(all .5s cubic-bezier(.4, .85, .49, .99) 5s);
+        @include transition(all .5s cubic-bezier(.4, .85, .49, .99));
         @include box-shadow(0 2px 4px 0 rgba(0,0,0,0.12));
         @include rounded(3px);
         color: $light-gray;
@@ -42,15 +42,58 @@
         }
     }
 
-    @include tablet {
-
+    @include all-mobile {
+        .searchBy{
+            font-size: 14px;
+            select{
+                margin-left: 0px;
+                width: 120px;
+            }
+        }
+        .advancedSearch{
+            margin: 15px 0px 0px;
+            padding: 15px;
+            input, select{
+                margin-bottom: 10px;
+            }
+            select{
+                margin-left: 5px;
+            }
+            .actions{
+                bottom: 15px;
+                right: 15px;
+                .buttonItem{
+                    height: 25px;
+                }
+            }
+        }
     }
 
     @include mobile {
-
+        .advancedSearch {
+            width: 345px;
+            height: 130px;
+            input, select {
+                width: 315px;
+            }
+            select {
+                width: 150px;
+            }
+        }
     }
 
     @include mobile-small {
-
+        .advancedSearch {
+            width: 290px;
+            height: 120px;
+            input, select {
+                width: 260px;
+                margin-bottom: 10px;
+            }
+            select {
+                margin-left: 5px;
+                width: 110px;
+            }
+        }
     }
 }
