@@ -1,7 +1,7 @@
 # library-app
-## :books: Admin library app :books:
+## :books: Problema planteado :books:
 
-:memo: Problema planteado: La biblioteca nacional tiene archivados y catalogados todos sus libros, pero todavía no han encontrado la forma de poder consultar su archivo. Nos han pedido que les ayudemos creándoles una aplicación que consuma un JSON (ver archivo) y que haga las siguientes acciones:
+La biblioteca nacional tiene archivados y catalogados todos sus libros, pero todavía no han encontrado la forma de poder consultar su archivo. Nos han pedido que les ayudemos creándoles una aplicación que consuma un JSON (ver archivo) y que haga las siguientes acciones:
 
 * Listado de libros.
 * Insertar un nuevo libro.
@@ -23,7 +23,7 @@ El campo metadata de books se compone por:
     * “20” chars - Campo reservado.
     * “15” chars - Fecha de publicación en unix timestampt.
 
-## :computer: Stack tecnologico empleado:
+## :computer: Stack tecnologico empleado: :computer:
 * [AngularJS](https://angularjs.org/)
 * [Sass](http://sass-lang.com/)
 * [Gulp](https://gulpjs.com/)
