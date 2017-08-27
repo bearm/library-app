@@ -96,7 +96,7 @@ app.controller('catalogueController', function ($scope, $location, catalogueServ
             title: "Nuevo libro",
             author: "Autor",
             metadata: "L000-0-000-00000-0                                000000000000000",
-            users: {}
+            users: []
         };
         $scope.books.unshift(book);
     };

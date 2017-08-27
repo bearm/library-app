@@ -19,7 +19,7 @@ app.filter('capitalize', function () {
 })
     .filter('removeAccents', function () {
         return function (source) {
-            if (source != "") {
+            if ((source != "") && (source != null)) {
                 var accent = [
                         /[\300-\306]/g, /[\340-\346]/g, // A, a
                         /[\310-\313]/g, /[\350-\353]/g, // E, e
