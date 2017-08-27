@@ -8,12 +8,12 @@ Problema planteado: La biblioteca nacional tiene archivados y catalogados todos 
 * Editar información sobre el libro.
 * Listado de personas que han accedido a un libro y también poder ver qué libros ha visto una persona en particular.
 * Buscador. Los campos de búsqueda pueden ser:
-    * 1. Título
-    * 2. Autor
-    * 3. ISBIN (número de registro)
-    * 4. Género
+    * Título
+    * Autor
+    * ISBIN (número de registro)
+    * Género
 
-Donde 1 no es compatible con 2 ni con 4 y 3 es incompatible con todos.
+Donde Título no es compatible con Autor ni con Género y ISBIN es incompatible con todos.
 
 El campo metadata de books se compone por:
 
