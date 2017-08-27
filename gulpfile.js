@@ -1,6 +1,5 @@
 /* File: gulpfile.js */
 var gulp   = require('gulp'),
-    jshint = require('gulp-jshint'),
     sass   = require('gulp-sass'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat');
