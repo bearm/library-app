@@ -42,12 +42,12 @@ app.controller('catalogueController', function ($scope, $location, catalogueServ
         if (book.title == "" || book.author == "" ||
             book.date == "" || book.theme == "" ||
             book.isbin == "") {
-            return "Revisa que no haya ninguno vacio.";
+            return "Revisa que no haya ninguno vacio";
         }
         if (book.title.length < 5 || book.author.length < 5) {
-            return "Título o autor demasiado corto.";
+            return "Título o autor demasiado corto";
         }
-        if (book.title.length > 25 || book.author.length > 25) {
+        if (book.title.length > 50 || book.author.length > 50) {
             return "Título o autor demasiado largo";
         }
         if (!validDateFilter(book.date)) {
@@ -77,13 +77,14 @@ app.controller('catalogueController', function ($scope, $location, catalogueServ
         return true;
     };
     $scope.generateMetadata = function (selectedBook) {
-        var paddingTheme = new Array(12).join(' ').substring(selectedBook.length);
+        var paddingTheme = new Array(13).join(' ').substring(selectedBook.theme.length);
+        var timestamp = toTimestampFilter(selectedBook.date) + "";
+        var paddingTimestamp = new Array(16).join('0').substring(timestamp.length);
         return "L" +
             selectedBook.isbin +
             selectedBook.theme + paddingTheme +
-            new Array(20).join(' ') +
-            toTimestampFilter(selectedBook.date);
-
+            new Array(21).join(' ') +
+            paddingTimestamp + timestamp;
     };
     $scope.deleteBook = function (book, $index) {
         $scope.books.splice($index, 1);
