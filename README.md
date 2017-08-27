@@ -30,3 +30,14 @@ El campo metadata de books se compone por:
 * [Karma](https://karma-runner.github.io/1.0/index.html)
 * [Mocha](https://mochajs.org/")
 * [Chai](http://chaijs.com/)
+
+## Build
+1. **npm install**
+2. **gulp build** (se ejecuta el compilador minimizador de sass y se construyen los bundles de js)
+
+## Tests
+
+Los test unitarios se encuntran bajo la carpeta /test, la cobertura del proyecto no es del 100% pero se puede ver que estructura seguirian el resto de los test. Para ejecutarlos:
+**./node_modules/karma/bin/karma start**
+
+
