@@ -1,5 +1,6 @@
-# library-app
-## :books: Problema planteado :books:
+# :books: library-app :books:
+
+## :memo: Problema planteado
 
 La biblioteca nacional tiene archivados y catalogados todos sus libros, pero todavía no han encontrado la forma de poder consultar su archivo. Nos han pedido que les ayudemos creándoles una aplicación que consuma un JSON (ver archivo) y que haga las siguientes acciones:
 
@@ -23,7 +24,7 @@ El campo metadata de books se compone por:
     * “20” chars - Campo reservado.
     * “15” chars - Fecha de publicación en unix timestampt.
 
-## :computer: Stack tecnologico empleado: :computer:
+## :computer: Stack tecnologico empleado:
 * [AngularJS](https://angularjs.org/)
 * [Sass](http://sass-lang.com/)
 * [Gulp](https://gulpjs.com/)
@@ -31,11 +32,11 @@ El campo metadata de books se compone por:
 * [Mocha](https://mochajs.org/")
 * [Chai](http://chaijs.com/)
 
-## Build
+## :wrench: Build
 1. **npm install**
 2. **gulp build** (se ejecuta el compilador minimizador de sass y se construyen los bundles de js)
 
-## Tests
+## :white_check_mark: Tests
 
 Los test unitarios se encuntran bajo la carpeta /test, la cobertura del proyecto no es del 100% pero se puede ver que estructura seguirian el resto de los test. Para ejecutarlos:
 **./node_modules/karma/bin/karma start**
