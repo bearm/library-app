@@ -20,9 +20,9 @@ El campo metadata de books se compone por:
     * “15” chars - Fecha de publicación en unix timestampt.
 
 ## Stack tecnologico empleado:
-    * [AngularJS](https://angularjs.org/)
-    * [Sass](http://sass-lang.com/),
-    * [Gulp](https://gulpjs.com/),
-    * [Karma](https://karma-runner.github.io/1.0/index.html),
-    * [Mocha](https://mochajs.org/"),
-    * [Chai](http://chaijs.com/)
+    * ![AngularJS](https://angularjs.org/)
+    * ![Sass](http://sass-lang.com/),
+    * ![Gulp](https://gulpjs.com/),
+    * ![Karma](https://karma-runner.github.io/1.0/index.html),
+    * ![Mocha](https://mochajs.org/"),
+    * ![Chai](http://chaijs.com/)
